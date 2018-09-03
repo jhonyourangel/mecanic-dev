@@ -14,7 +14,7 @@ let ctrlProfile = require('../controllers/profile');
 let ctrlAuth = require('../controllers/authentication');
 
 /**
- * handle user functions:
+ * handle user functions: 
  * getAllUsers, getUserByFirstLetter, getUserByName, findByUsername
  */
 let dbUsers = require('../database/queries/usersFunctions.js');
