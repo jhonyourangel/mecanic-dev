@@ -21,7 +21,7 @@ const maintenanceSchema = new mongoose.Schema({
         default: '',
         required: fasle
     },
-    carNumber: {
+    plateNumber: {
         type: String,
         default: '',
         required: false
