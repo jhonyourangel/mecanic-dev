@@ -1,15 +1,15 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 // [SH] Require Passport
-var passport = require('passport');
+const passport = require('passport');
 const cors = require('cors')
 
 // redirect to https
-var redirectToHTTPS = require('express-http-to-https').redirectToHTTPS
+const redirectToHTTPS = require('express-http-to-https').redirectToHTTPS
+const errorHandler = require("./app_api/middleware/error-handler");
 
 
 // [SH] Bring in the data model
@@ -19,9 +19,9 @@ require('./app_api/config/passport');
 
 
 // [SH] Bring in the routes for the API (delete the default routes)
-var routesApi = require('./app_api/routes/index');
+const routesApi = require('./app_api/routes/index');
 
-var app = express();
+const app = express();
 app.use(cors({origin: '*'}));
 
 // Don't redirect if the hostname is `localhost:port` or the route is `/insecure`
@@ -37,10 +37,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 // [SH] Set the app_client folder to serve static resources
-app.use(express.static(path.join(__dirname, 'app_client/dist')));
-//app.use(express.static(path.join(__dirname, 'app_client')));
+app.use(express.static(path.join(__dirname, 'frontend')));
 
 // [SH] Initialise Passport before using the route middleware
 app.use(passport.initialize());
@@ -55,10 +53,11 @@ app.use(function(req, res) {
     res.sendFile(path.join(__dirname, 'app_client/dist', 'index.html'));
 });
 
+app.use(errorHandler());
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-    var err = new Error('Not Found');
+    const err = new Error('Not Found');
     err.status = 404;
     next(err);
 });

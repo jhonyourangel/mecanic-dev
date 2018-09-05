@@ -25,37 +25,10 @@ let userSchema = new mongoose.Schema({
     required: false,
     default: '../images/user.png'
   },
-  address: {
-    street: {
-      type: String,
-      required: false,
-      default: ''
-    },
-    number: {
-      type: String,
-      required: false,
-      default: ''
-    },
-    city: {
-      type: String,
-      required: false,
-      default: ''
-    },
-    postaCode: {
-      type: String,
-      required: false,
-      default: ''
-    },
-    country: {
-      type: String,
-      required: false,
-      default: ''
-    },
-    full: {
-      type: String,
-      required: false,
-      default: ''
-    }
+  role: {
+    type: String,
+    default: 'user',
+    required: false
   },
   qualification: {
     type: String,

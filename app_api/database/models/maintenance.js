@@ -11,6 +11,11 @@ const maintenanceSchema = new mongoose.Schema({
         default: new Date(), 
         required: false
     },
+    createdBy: {
+        type: String,
+        default: '',
+        required: false
+    },
     categories: {
         type: Array,
         default: [],
