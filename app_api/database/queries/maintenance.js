@@ -1,19 +1,25 @@
 const mongoose = require('mongoose');
-const Vehicle = mongoose.model('vehicle');
+const Maintenance = mongoose.model('maintenance');
 const errorHandler = require('../db-error-handler');
+const jwtDecode = require('../decodeToken')
 
-module.exports.createVehicle = (req, res, next) => {
-    // console.log({...req.body})
-    let newVehicle = new Vehicle({ ...req.body
+
+module.exports.createMaintenance = (req, res, next) => {
+    const createdBy = jwtDecode.decodeToken(req.headers.authorization)
+    let newMaintenance = new Maintenance({
+        ...req.body,
+        createdBy,
+        categories: req.body.categories.split(',')
     })
-    newVehicle.save()
+    newMaintenance.save()
         .then(saveRes => res.status(200).json(saveRes))
         .catch(err => errorHandler(err, req, res, next))
 }
 
-module.exports.editVehicle = async (req, res, next) => {
-    Vehicle.findByIdAndUpdate(req.body.id, {
-            ...req.body
+module.exports.editMaintenance = async (req, res, next) => {
+    Maintenance.findByIdAndUpdate(req.body.id, {
+            ...req.body,
+            categories: req.body.categories.split(',')
         }, {
             // if true will return the updated data of the document
             new: true
@@ -23,17 +29,17 @@ module.exports.editVehicle = async (req, res, next) => {
         .catch(err => errorHandler(err, req, res, next))
 }
 
-module.exports.deleteVehicle = (req, res, next) => {
-    Vehicle.findByIdAndRemove(req.body.id)
+module.exports.deleteMaintenance = (req, res, next) => {
+    Maintenance.findByIdAndRemove(req.body.id)
         .exec()
         .then(delRes => res.status(200).json(delRes === null ? {
-            msg: 'Masina pe care ai vrut sa o elimini nu a fost gasita'
+            msg: 'Intretinerea pe care ai vrut sa o elimini nu a fost gasita'
         } : delRes))
         .catch(err => errorHandler(err, req, res, next))
 }
 
-module.exports.getVehicle = (req, res, next) => {
-    Vehicle.find({
+module.exports.getMaintenance = (req, res, next) => {
+    Maintenance.find({
             plateNumber: req.params.plateNumber.toUpperCase()
         })
         .exec()
@@ -41,8 +47,8 @@ module.exports.getVehicle = (req, res, next) => {
         .catch(err => errorHandler(err, req, res, next))
 }
 
-module.exports.getAllVehicles = (req, res, next) => {
-    Vehicle.find()
+module.exports.getAllMaintenances = (req, res, next) => {
+    Maintenance.find()
         .exec()
         .then(foundRes => res.status(200).json(foundRes))
         .catch(err => errorHandler(err, req, res, next))

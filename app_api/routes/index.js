@@ -7,20 +7,34 @@ const auth = jwt({
     secret: process.env.MY_SECRET,
     userProperty: 'payload'
 });
+const {
+    createVehicle,
+    editVehicle,
+    deleteVehicle,
+    getVehicle,
+    getAllVehicles
+} = require('../database/queries/vehicle')
+
+const {
+    createProduct,
+    editProduct,
+    deleteProduct,
+    getProduct,
+    getAllProducts
+} = require('../database/queries/product')
+
+const {
+    createMaintenance,
+    editMaintenance,
+    deleteMaintenance,
+    getMaintenance,
+    getAllMaintenances
+} = require('../database/queries/maintenance')
 
 const ctrlProfile = require('../controllers/profile');
 const ctrlAuth = require('../controllers/authentication');
 
-/**
- * handle user functions: 
- * getAllUsers, getUserByFirstLetter, getUserByName, findByUsername
- */
 const dbUsers = require('../database/queries/usersFunctions.js');
-
-// dev only !!!
-//    let createUsers = require('../dev-scripts/createUsers.js');
-// dev only
-
 router.post('/register', ctrlAuth.register);
 router.post('/login', ctrlAuth.login);
 router.post('/reauth', ctrlAuth.reauth);
@@ -31,15 +45,27 @@ router.use(auth)
 router.get('/profile', ctrlProfile.profileRead);
 
 
-const {
-    createVehicle
-} = require('../database/queries/vehicle')
 /******** vehicle api */
+
 router.post('/pwa/vehicle', createVehicle)
+router.put('/pwa/vehicle', editVehicle)
+router.delete('/pwa/vehicle', deleteVehicle)
+router.get('/pwa/vehicle/:plateNumber', getVehicle)
+router.get('/pwa/vehicle', getAllVehicles)
 
+/******** product api */
+router.post('/pwa/product', createProduct)
+router.put('/pwa/product', editProduct)
+router.delete('/pwa/product', deleteProduct)
+router.get('/pwa/product/:name', getProduct)
+router.get('/pwa/product', getAllProducts)
 
-
-
+/******** maintenance api */
+router.post('/pwa/maintenance', createMaintenance)
+router.put('/pwa/maintenance', editMaintenance)
+router.delete('/pwa/maintenance', deleteMaintenance)
+router.get('/pwa/maintenance/:plateNumber', getMaintenance)
+router.get('/pwa/maintenance', getAllMaintenances)
 
 /************ begin of bad api */
 // post another user profile

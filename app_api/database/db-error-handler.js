@@ -7,7 +7,7 @@ module.exports = (error, req, res, next) => {
         case 11000:
             errorObject = {
                 name: 'Valoare duplicata',
-                message: error.message,
+                message: remapDuplicateErrorMessagge(error.message),
                 code: error.code
             }
         break
@@ -31,3 +31,10 @@ module.exports = (error, req, res, next) => {
 
     res.status(400).json(errorObject)
 };
+
+
+const remapDuplicateErrorMessagge = (msg) => {
+    return msg
+    .replace('E11000 duplicate key error collection: ','Valoare duplicata in colectia: ')
+    .replace('dup key: ', ' valoare duplicata este: ')
+}

@@ -29,7 +29,10 @@ const maintenanceSchema = new mongoose.Schema({
     plateNumber: {
         type: String,
         default: '',
-        required: false
+        unique: true,
+        required: true,
+        index: true,
+        uppercase: true,
     },
     carKm: {
         type: Number,

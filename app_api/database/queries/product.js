@@ -1,18 +1,18 @@
 const mongoose = require('mongoose');
-const Vehicle = mongoose.model('vehicle');
+const Product = mongoose.model('product');
 const errorHandler = require('../db-error-handler');
 
-module.exports.createVehicle = (req, res, next) => {
+module.exports.createProduct = (req, res, next) => {
     // console.log({...req.body})
-    let newVehicle = new Vehicle({ ...req.body
+    let newProduct = new Product({ ...req.body
     })
-    newVehicle.save()
+    newProduct.save()
         .then(saveRes => res.status(200).json(saveRes))
         .catch(err => errorHandler(err, req, res, next))
 }
 
-module.exports.editVehicle = async (req, res, next) => {
-    Vehicle.findByIdAndUpdate(req.body.id, {
+module.exports.editProduct = async (req, res, next) => {
+    Product.findByIdAndUpdate(req.body.id, {
             ...req.body
         }, {
             // if true will return the updated data of the document
@@ -23,26 +23,26 @@ module.exports.editVehicle = async (req, res, next) => {
         .catch(err => errorHandler(err, req, res, next))
 }
 
-module.exports.deleteVehicle = (req, res, next) => {
-    Vehicle.findByIdAndRemove(req.body.id)
+module.exports.deleteProduct = (req, res, next) => {
+    Product.findByIdAndRemove(req.body.id)
         .exec()
         .then(delRes => res.status(200).json(delRes === null ? {
-            msg: 'Masina pe care ai vrut sa o elimini nu a fost gasita'
+            msg: 'Produsul pe care ai vrut sa o elimini nu a fost gasit'
         } : delRes))
         .catch(err => errorHandler(err, req, res, next))
 }
 
-module.exports.getVehicle = (req, res, next) => {
-    Vehicle.find({
-            plateNumber: req.params.plateNumber.toUpperCase()
+module.exports.getProduct = (req, res, next) => {
+    Product.find({
+            name: req.params.name
         })
         .exec()
         .then(foundRes => res.status(200).json(foundRes))
         .catch(err => errorHandler(err, req, res, next))
 }
 
-module.exports.getAllVehicles = (req, res, next) => {
-    Vehicle.find()
+module.exports.getAllProducts = (req, res, next) => {
+    Product.find()
         .exec()
         .then(foundRes => res.status(200).json(foundRes))
         .catch(err => errorHandler(err, req, res, next))
