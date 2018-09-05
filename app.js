@@ -6,10 +6,12 @@ const bodyParser = require('body-parser');
 // [SH] Require Passport
 const passport = require('passport');
 const cors = require('cors')
+const expressSanitizer = require('express-sanitizer');
 
 // redirect to https
 const redirectToHTTPS = require('express-http-to-https').redirectToHTTPS
 const errorHandler = require("./app_api/middleware/error-handler");
+const sanitizer = require("./app_api/middleware/sanitizer");
 
 
 // [SH] Bring in the data model
@@ -37,12 +39,14 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(expressSanitizer()); 
+app.use(sanitizer());
+
 // [SH] Set the app_client folder to serve static resources
 app.use(express.static(path.join(__dirname, 'frontend')));
 
 // [SH] Initialise Passport before using the route middleware
 app.use(passport.initialize());
-
 // [SH] Use the API routes when path starts with /api
 app.use('/api', routesApi);
 

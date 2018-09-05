@@ -2,8 +2,6 @@ let passport = require('passport');
 let mongoose = require('mongoose');
 let User = mongoose.model('user');
 
-
-
 module.exports.getAllUsers = function (req, res) {
     // find all users, get only the name field and limit to 5 users
     console.log('get all users');

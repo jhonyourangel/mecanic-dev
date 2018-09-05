@@ -24,7 +24,7 @@ const maintenanceSchema = new mongoose.Schema({
     category: {
         type:String,
         default: '',
-        required: fasle
+        required: false
     },
     plateNumber: {
         type: String,

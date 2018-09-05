@@ -14,12 +14,21 @@ const vehicleSchema = new mongoose.Schema({
     category: {
         type:String,
         default: '',
-        required: fasle
+        required: false
     },
     plateNumber: {
         type: String,
         default: '',
-        required: false
+        unique: true,
+        required: true,
+        index: true,
+        uppercase: true,
+    },
+    plateNationality: {
+        type: String,
+        default: '',
+        required: true,
+        uppercase: true,
     },
     carKm: {
         type: Number,
@@ -35,16 +44,17 @@ const vehicleSchema = new mongoose.Schema({
     email: {
         type: String,
         default: '',
-        required: false
+        required: true
     },
     phoneNumber: {
         type: String,
         default: '',
-        required: false
+        required: true
     },
     // vehicle brand, model and year
     brand: {
         type: String,
+        enum: ['bmw', 'volswagen', 'audi'],
         default: '',
         required: false
     },

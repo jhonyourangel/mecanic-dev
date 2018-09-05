@@ -15,8 +15,6 @@ module.exports.register = function (req, res) {
     newuser.name = req.body.name || '';
     newuser.surname = req.body.surname || '';
     newuser.email = req.body.email;
-    newuser.username = req.body.email.split('@')[0];
-
     
     newuser.setPassword(req.body.password);
     newuser.token = newuser.generateJwt();
@@ -40,10 +38,7 @@ module.exports.login = function (req, res) {
       return;
     }
 
-    console.log("log in called:", req.body.email, ": ", req.body.password)
     passport.authenticate('local', function (err, user, info) {
-        // If Passport throws/catches an error
-        console.log(info)
         if (err) {
             res.status(404).json(err);
             return;

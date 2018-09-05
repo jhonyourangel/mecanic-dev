@@ -26,13 +26,6 @@ passport.use(new LocalStrategy({
                 });
             }
 
-            // check the token and regenerate it 
-            // if (!user.validJWT('clientToken')) {
-            //     return done(null, false, {
-            //         message: 'Token is wrong'
-            //     });
-            // }
-
             // If credentials are correct, return the user object
             return done(null, user);
         });

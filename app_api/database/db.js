@@ -61,5 +61,6 @@ process.on('SIGTERM', function () {
 
 // BRING IN YOUR SCHEMAS & MODELS
 require('./models/user');
-// require('./models/transaction');
-// require('./models/project');
+require('./models/vehicle');
+require('./models/product');
+require('./models/maintenance');
