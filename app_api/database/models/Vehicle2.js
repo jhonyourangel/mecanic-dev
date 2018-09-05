@@ -24,6 +24,7 @@ const vehicleSchema = new mongoose.Schema({
         index: true,
         uppercase: true,
     },
+    
     plateNationality: {
         type: String,
         default: '',
