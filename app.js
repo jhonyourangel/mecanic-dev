@@ -43,7 +43,7 @@ app.use(expressSanitizer());
 app.use(sanitizer());
 
 // [SH] Set the app_client folder to serve static resources
-app.use(express.static(path.join(__dirname, 'app_client')));
+app.use(express.static(path.join(__dirname, 'client_pwa')));
 
 // [SH] Initialise Passport before using the route middleware
 app.use(passport.initialize());
@@ -53,8 +53,7 @@ app.use('/api', routesApi);
 // [SH] Otherwise render the index.html page for the Angular SPA
 // [SH] This means we don't have to map all of the SPA routes in Express
 app.use(function(req, res) {
-    // res.sendFile(path.join(__dirname, 'app_client', 'index.html'));
-    res.sendFile(path.join(__dirname, 'app_client/dist', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client_pwa', 'index.html'));
 });
 
 app.use(errorHandler());
