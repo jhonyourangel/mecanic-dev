@@ -53,8 +53,8 @@ app.use('/api', routesApi);
 // [SH] Otherwise render the index.html page for the Angular SPA
 // [SH] This means we don't have to map all of the SPA routes in Express
 app.use(function(req, res) {
-    //res.sendFile(path.join(__dirname, 'app_client', 'index.html'));
-    res.sendFile(path.join(__dirname, 'app_client/dist', 'index.html'));
+    res.sendFile(path.join(__dirname, 'app_client', 'index.html'));
+    // res.sendFile(path.join(__dirname, 'app_client/dist', 'index.html'));
 });
 
 app.use(errorHandler());
