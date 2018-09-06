@@ -43,7 +43,7 @@ app.use(expressSanitizer());
 app.use(sanitizer());
 
 // [SH] Set the app_client folder to serve static resources
-app.use(express.static(path.join(__dirname, 'frontend')));
+app.use(express.static(path.join(__dirname, 'app_client')));
 
 // [SH] Initialise Passport before using the route middleware
 app.use(passport.initialize());
