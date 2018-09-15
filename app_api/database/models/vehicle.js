@@ -11,6 +11,7 @@ const vehicleSchema = new mongoose.Schema({
         default: new Date(), 
         required: false
     },
+    // what category is for ????
     category: {
         type:String,
         default: '',
@@ -24,7 +25,12 @@ const vehicleSchema = new mongoose.Schema({
         index: true,
         uppercase: true,
     },
-    
+    VIN: {
+        type: String,
+        default: '',
+        required: true,
+        uppercase: true,
+    },
     plateNationality: {
         type: String,
         default: '',
