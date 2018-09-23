@@ -38,6 +38,12 @@ const maintenanceSchema = new mongoose.Schema({
         type: Number,
         default: 0,
         required: false
+    },
+    VIN: {
+        type: String,
+        default: '',
+        required: true,
+        uppercase: true,
     }
 
 })
