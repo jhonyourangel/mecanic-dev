@@ -10,7 +10,8 @@ module.exports.createVehicle = (req, res, next) => {
 }
 
 module.exports.editVehicle = async (req, res, next) => {
-    Vehicle.findByIdAndUpdate(`${req.body.id || req.query.id || req.params.id}`, {
+    Vehicle.findByIdAndUpdate(`${req.body._id || req.query._id || req.params._id}`, 
+        {
             ...req.body
         }, {
             // if true will return the updated data of the document
