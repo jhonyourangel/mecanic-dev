@@ -61,7 +61,7 @@ const vehicleSchema = new mongoose.Schema({
     // vehicle brand, model and year
     brand: {
         type: String,
-        enum: ['bmw', 'volswagen', 'audi'],
+        // enum: ['bmw', 'volswagen', 'audi'],
         default: '',
         required: false
     },
