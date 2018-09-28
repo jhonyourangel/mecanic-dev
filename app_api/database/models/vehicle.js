@@ -25,7 +25,7 @@ const vehicleSchema = new mongoose.Schema({
         index: true,
         uppercase: true,
     },
-    VIN: {
+    vin: {
         type: String,
         default: '',
         required: true,
@@ -34,7 +34,7 @@ const vehicleSchema = new mongoose.Schema({
     plateNationality: {
         type: String,
         default: '',
-        required: true,
+        required: false,
         uppercase: true,
     },
     carKm: {
