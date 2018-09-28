@@ -12,9 +12,11 @@ module.exports.createProduct = (req, res, next) => {
 }
 
 module.exports.editProduct = async (req, res, next) => {
-    Product.findByIdAndUpdate(req.body.id, {
+    Product.findByIdAndUpdate(`${req.body.id || req.query.id || req.params.id}`, 
+        {
             ...req.body
-        }, {
+        }, 
+        {
             // if true will return the updated data of the document
             new: true
         })
@@ -24,7 +26,7 @@ module.exports.editProduct = async (req, res, next) => {
 }
 
 module.exports.deleteProduct = (req, res, next) => {
-    Product.findByIdAndRemove(req.body.id)
+    Product.findByIdAndRemove(`${req.body.id || req.query.id || req.params.id}`)
         .exec()
         .then(delRes => res.status(200).json(delRes === null ? {
             msg: 'Produsul pe care ai vrut sa o elimini nu a fost gasit'

@@ -10,7 +10,7 @@ module.exports.createVehicle = (req, res, next) => {
 }
 
 module.exports.editVehicle = async (req, res, next) => {
-    Vehicle.findByIdAndUpdate(req.body.id, {
+    Vehicle.findByIdAndUpdate(`${req.body.id || req.query.id || req.params.id}`, {
             ...req.body
         }, {
             // if true will return the updated data of the document
@@ -22,11 +22,11 @@ module.exports.editVehicle = async (req, res, next) => {
 }
 
 module.exports.deleteVehicle = (req, res, next) => {
-    Vehicle.findByIdAndRemove(req.body.id)
+    Vehicle.findByIdAndRemove(`${req.body.id || req.query.id || req.params.id}`)
         .exec()
-        .then(delRes => res.status(200).json(delRes === null ? {
-            msg: 'Masina pe care ai vrut sa o elimini nu a fost gasita'
-        } : delRes))
+        .then(delRes => res.status(200).json(delRes === null ? 
+            {msg: 'Masina pe care ai vrut sa o elimini nu a fost gasita' } 
+            : delRes))
         .catch(err => errorHandler(err, req, res, next))
 }
 
