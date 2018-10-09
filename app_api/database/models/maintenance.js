@@ -16,7 +16,10 @@ const maintenanceSchema = new mongoose.Schema({
         default: '',
         required: false
     },
-    categories: {
+    // those are not categories
+    // those are products
+    // categories: {
+    products: {
         type: Array,
         default: [],
         required: false
@@ -29,9 +32,11 @@ const maintenanceSchema = new mongoose.Schema({
     plateNumber: {
         type: String,
         default: '',
-        unique: true,
-        required: true,
-        index: true,
+        uppercase: true,
+    },
+    vin: {
+        type: String,
+        default: '',
         uppercase: true,
     },
     carKm: {
