@@ -23,7 +23,7 @@ module.exports.editVehicle = async (req, res, next) => {
 }
 
 module.exports.deleteVehicle = (req, res, next) => {
-    Vehicle.findByIdAndRemove(`${req.body.id || req.query.id || req.params.id}`)
+    Vehicle.findByIdAndRemove(`${req.body._id || req.query._id || req.params._id}`)
         .exec()
         .then(delRes => res.status(200).json(delRes === null ? 
             {msg: 'Masina pe care ai vrut sa o elimini nu a fost gasita' } 

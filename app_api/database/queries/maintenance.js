@@ -17,7 +17,7 @@ module.exports.createMaintenance = (req, res, next) => {
 }
 
 module.exports.editMaintenance = async (req, res, next) => {
-    Maintenance.findByIdAndUpdate(`${req.body.id || req.query.id || req.params.id}`, 
+    Maintenance.findByIdAndUpdate(`${req.body._id || req.query._id || req.params._id}`, 
         {
             ...req.body,
             categories: req.body.categories.split(',')
@@ -31,7 +31,7 @@ module.exports.editMaintenance = async (req, res, next) => {
 }
 
 module.exports.deleteMaintenance = (req, res, next) => {
-    Maintenance.findByIdAndRemove(`${req.body.id || req.query.id || req.params.id}`)
+    Maintenance.findByIdAndRemove(`${req.body._id || req.query._id || req.params._id}`)
         .exec()
         .then(delRes => res.status(200).json(delRes === null ? {
             msg: 'Intretinerea pe care ai vrut sa o elimini nu a fost gasita'
