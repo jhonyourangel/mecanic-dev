@@ -4,7 +4,7 @@ const vehicleSchema = new mongoose.Schema({
     creationDate: {
         type: Date,
         default: new Date(), 
-        required: true
+        required: false
     },
     editDate: {
         type: Date,
@@ -21,14 +21,14 @@ const vehicleSchema = new mongoose.Schema({
         type: String,
         default: '',
         unique: true,
-        required: true,
+        required: false,
         index: true,
         uppercase: true,
     },
     vin: {
         type: String,
         default: '',
-        required: true,
+        required: false,
         uppercase: true,
     },
     plateNationality: {
@@ -51,12 +51,12 @@ const vehicleSchema = new mongoose.Schema({
     email: {
         type: String,
         default: '',
-        required: true
+        required: false
     },
     phoneNumber: {
         type: String,
         default: '',
-        required: true
+        required: false
     },
     // vehicle brand, model and year
     brand: {

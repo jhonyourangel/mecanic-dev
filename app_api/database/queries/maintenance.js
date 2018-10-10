@@ -9,7 +9,7 @@ module.exports.createMaintenance = (req, res, next) => {
     let newMaintenance = new Maintenance({
         ...req.body,
         createdBy,
-        categories: req.body.categories.split(',')
+        products: req.body.products.split(',')
     })
     newMaintenance.save()
         .then(saveRes => res.status(200).json(saveRes))
@@ -20,7 +20,7 @@ module.exports.editMaintenance = async (req, res, next) => {
     Maintenance.findByIdAndUpdate(`${req.body._id || req.query._id || req.params._id}`, 
         {
             ...req.body,
-            categories: req.body.categories.split(',')
+            products: req.body.products.split(',')
         }, {
             // if true will return the updated data of the document
             new: true
