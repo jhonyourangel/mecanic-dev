@@ -75,12 +75,12 @@ router.delete('/pwa/maintenance', deleteMaintenance)
 router.get('/pwa/maintenance/:plateNumber', getMaintenance)
 router.get('/pwa/maintenance', getAllMaintenances)
 
-/******** maintenance api */
-router.post('/pwa/maintenance', createMaintenance)
-router.put('/pwa/maintenance', editMaintenance)
-router.delete('/pwa/maintenance', deleteMaintenance)
-router.get('/pwa/maintenance/:plateNumber', getMaintenance)
-router.get('/pwa/maintenance', getAllMaintenances)
+/******** service api */
+router.post('/pwa/maintenance', createService)
+router.put('/pwa/maintenance', editService)
+router.delete('/pwa/maintenance', deleteService)
+router.get('/pwa/maintenance/:plateNumber', getService)
+router.get('/pwa/maintenance', getAllServices)
 
 
 /************ begin of old api */
