@@ -43,6 +43,11 @@ const maintenanceSchema = new mongoose.Schema({
         type: Number,
         default: 0,
         required: false
+    },
+    note: {
+        type: String,
+        default: '',
+        required: false
     }
 
 })

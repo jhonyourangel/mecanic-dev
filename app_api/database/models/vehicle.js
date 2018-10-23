@@ -75,6 +75,11 @@ const vehicleSchema = new mongoose.Schema({
         default: '',
         required: false
     },
+    note: {
+        type: String,
+        default: '',
+        required: false
+    }
 })
 
 mongoose.model('vehicle', vehicleSchema)

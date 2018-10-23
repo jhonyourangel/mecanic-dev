@@ -40,6 +40,11 @@ const productSchema = new mongoose.Schema({
         type: Number,
         default: '',
         required: false
+    },
+    note: {
+        type: String,
+        default: '',
+        required: false
     }
     
 })
