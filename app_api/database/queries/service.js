@@ -6,10 +6,11 @@ const jwtDecode = require('../decodeToken')
 
 module.exports.createService = (req, res, next) => {
     const createdBy = jwtDecode.decodeToken(req.headers.authorization)
+    
+    console.log(req.body);
     let newService = new Service({
         ...req.body,
         createdBy,
-        products: req.body.products.split(',')
     })
     newService.save()
         .then(saveRes => res.status(200).json(saveRes))
@@ -20,7 +21,6 @@ module.exports.editService = async (req, res, next) => {
     Service.findByIdAndUpdate(`${req.body._id || req.query._id || req.params._id}`, 
         {
             ...req.body,
-            products: req.body.products.split(',')
         }, {
             // if true will return the updated data of the document
             new: true
