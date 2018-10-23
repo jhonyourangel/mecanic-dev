@@ -76,11 +76,11 @@ router.get('/pwa/maintenance/:plateNumber', getMaintenance)
 router.get('/pwa/maintenance', getAllMaintenances)
 
 /******** service api */
-router.post('/pwa/maintenance', createService)
-router.put('/pwa/maintenance', editService)
-router.delete('/pwa/maintenance', deleteService)
-router.get('/pwa/maintenance/:plateNumber', getService)
-router.get('/pwa/maintenance', getAllServices)
+router.post('/pwa/service', createService)
+router.put('/pwa/service', editService)
+router.delete('/pwa/service', deleteService)
+router.get('/pwa/service/:plateNumber', getService)
+router.get('/pwa/service', getAllServices)
 
 
 /************ begin of old api */
@@ -97,5 +97,12 @@ router.post('/upload', saveImages.upload.single('photo'), saveImages.saveProfile
  // get the list of all the users
 router.get('/pwa/get/users', dbUsers.getAllUsers);
 /************************************** end bad api */
+
+router.all('/pwa/*', (req, res, next)=>{
+    res.status(404).json({
+        error: 404,
+        msg: 'url not found'
+    })
+})
 
 module.exports = router;
