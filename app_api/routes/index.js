@@ -31,6 +31,14 @@ const {
     getAllMaintenances
 } = require('../database/queries/maintenance')
 
+const {
+    createService,
+    editService,
+    deleteService,
+    getService,
+    getAllServices
+} = require('../database/queries/service')
+
 const ctrlProfile = require('../controllers/profile');
 const ctrlAuth = require('../controllers/authentication');
 
@@ -67,7 +75,15 @@ router.delete('/pwa/maintenance', deleteMaintenance)
 router.get('/pwa/maintenance/:plateNumber', getMaintenance)
 router.get('/pwa/maintenance', getAllMaintenances)
 
-/************ begin of bad api */
+/******** maintenance api */
+router.post('/pwa/maintenance', createMaintenance)
+router.put('/pwa/maintenance', editMaintenance)
+router.delete('/pwa/maintenance', deleteMaintenance)
+router.get('/pwa/maintenance/:plateNumber', getMaintenance)
+router.get('/pwa/maintenance', getAllMaintenances)
+
+
+/************ begin of old api */
 // post another user profile
 router.get('/profile/:username', dbUsers.findByUsername);
 // save user profile information 
@@ -81,6 +97,5 @@ router.post('/upload', saveImages.upload.single('photo'), saveImages.saveProfile
  // get the list of all the users
 router.get('/pwa/get/users', dbUsers.getAllUsers);
 /************************************** end bad api */
-
 
 module.exports = router;
