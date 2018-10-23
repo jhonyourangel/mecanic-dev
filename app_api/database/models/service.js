@@ -62,3 +62,5 @@ const serviceSchema = new mongoose.Schema({
         required: false
     }
 })
+
+mongoose.model('service', serviceSchema)
