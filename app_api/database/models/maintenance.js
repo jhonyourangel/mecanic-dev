@@ -18,8 +18,12 @@ const maintenanceSchema = new mongoose.Schema({
     },
     // those are not categories
     // those are products
-    // categories: {
     products: {
+        type: Array,
+        default: [],
+        required: false
+    },
+    services: {
         type: Array,
         default: [],
         required: false
