@@ -16,8 +16,6 @@ const maintenanceSchema = new mongoose.Schema({
         default: '',
         required: false
     },
-    // those are not categories
-    // those are products
     products: {
         type: Array,
         default: [],
@@ -52,8 +50,17 @@ const maintenanceSchema = new mongoose.Schema({
         type: String,
         default: '',
         required: false
-    }
-
+    },
+    nextServiceKm : {
+        type: Number,
+        default: 0,
+        required: false
+    },
+    nextServiceDate : {
+        type: String,
+        default: new Date(),
+        required: false
+    },
 })
 
 mongoose.model('maintenance', maintenanceSchema)
